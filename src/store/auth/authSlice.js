@@ -9,22 +9,22 @@ import { createSlice } from '@reduxjs/toolkit';
       },
     reducers: {
       onChecking: ( state ) => {
-      state.status = 'checking',
-      state.user = {},
-      state.errorMessage = undefined
+      state.status = 'checking';
+      state.user = {};
+      state.errorMessage = undefined;
       },
       onLogin: ( state, {payload} ) => {
-        state.status = 'authenticated',
-        state.user = payload,
-        state.errorMessage = undefined
+        state.status = 'authenticated';
+        state.user = payload;
+        state.errorMessage = undefined;
       },
       onLogout: ( state, {payload} ) => {
-        state.status = 'not-authenticated',
-        state.user = {},
-        state.errorMessage = payload
+        state.status = 'not-authenticated';
+        state.user = {};
+        state.errorMessage = payload;
       },
       clearErrorMessage: (state) => {
-        state.errorMessage = undefined
+        state.errorMessage = undefined;
       }
     }
 });

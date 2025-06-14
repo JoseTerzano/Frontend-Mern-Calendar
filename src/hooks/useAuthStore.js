@@ -1,6 +1,8 @@
 import { useDispatch, useSelector } from "react-redux"
 import calendarApi from "../api/calendarApi"
 import { clearErrorMessage, onChecking, onLogin, onLogout } from "../store/auth/authSlice"
+import { getOverlappingDaysInIntervals } from "date-fns/esm"
+import { onLogoutCalendar } from "../store/calendar/calendarSlice"
 
 
 export const useAuthStore = () => {
@@ -45,9 +47,10 @@ export const useAuthStore = () => {
 
     const checkAuthToken = async() => {
         const token = localStorage.getItem('token');
+
         if (!token) return dispatch(onLogout());
         try {
-            const { data } = calendarApi.get('/auth/renew');
+            const { data } = await calendarApi.get('/auth/renew');
             localStorage.setItem('token', data.token);
             localStorage.setItem('token-init-date', new Date().getTime());
             dispatch(onLogin({ name: data.name, uid: data.uid }));
@@ -60,6 +63,7 @@ export const useAuthStore = () => {
     const startLogout = () => {
         localStorage.clear();
         dispatch(onLogout());
+        dispatch(onLogoutCalendar());
     }
 
     return {
