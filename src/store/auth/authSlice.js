@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
     name: 'auth',
     initialState: {
       status: 'checking',
-      user: {},
+      user: null,
       errorMessage: undefined
       },
     reducers: {

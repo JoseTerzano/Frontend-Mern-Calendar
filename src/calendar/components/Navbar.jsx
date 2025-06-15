@@ -8,7 +8,7 @@ export const Navbar = () => {
         <span className="navbar-brand">
             <i className="fas fa-calendar-alt"></i>
             &nbsp;
-            { user.name }
+            { user?.name }
         </span>
 
         <button
